@@ -29,7 +29,12 @@ jobs:
 
       - name: Build Web Project
         run: npm run build --if-present
-
+- name: Prepare Web Assets
+        run: |
+          mkdir -p www
+          cp -r public/* www/ 2>/dev/null || true
+          cp index.html www/ 2>/dev/null || true
+          cp -r assets www/ 2>/dev/null || true
       - name: Sync Capacitor
         run: |
           npx cap copy
