@@ -1,6 +1,5 @@
 {
   "appId": "com.example.app",
   "appName": "PLUTO22",
-  "webDir": ".",
-  "bundledWebRuntime": false
+  "webDir": "www"
 }
