@@ -1,5 +1,6 @@
 {
-  "appId": "com.pluto.app",
-  "appName": "Pluto",
-  "webDir": "public"
+  "appId": "com.example.app",
+  "appName": "PLUTO22",
+  "webDir": ".",
+  "bundledWebRuntime": false
 }
