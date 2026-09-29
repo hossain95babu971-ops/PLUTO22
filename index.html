@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PLUTO</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+</head>
+
+
+<body>
+
+<!-- ================================
+     AUTH
+================================ -->
+
+<div
+  class="auth-page hidden"
+  id="authPage"
+>
+
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      PLUTO
+    </div>
+
+    <p class="auth-subtitle">
+      Connect with people around the world
+    </p>
+
+
+    <!-- LOGIN -->
+
+    <div
+      class="auth-form active"
+      id="loginForm"
+    >
+
+      <h2>Welcome Back</h2>
+
+      <input
+        id="loginEmail"
+        type="email"
+        placeholder="Email address"
+      >
+
+      <input
+        id="loginPassword"
+        type="password"
+        placeholder="Password"
+      >
+
+      <button
+        class="primary-btn"
+        id="loginBtn"
+      >
+        Log In
+      </button>
+
+      <button
+  class="forgot-password-btn"
+  id="forgotPasswordBtn"
+  type="button"
+>
+  Forgot Password?
+</button>
+
+
+      <button
+        class="google-btn"
+        id="googleLoginBtn"
+      >
+        <i class="fa-brands fa-google"></i>
+        Continue with Google
+      </button>
+
+      <button
+        class="secondary-btn full-btn"
+        id="continueAsGuest"
+        type="button"
+      >
+        Continue browsing
+      </button>
+
+      <p class="auth-switch">
+
+        Don't have an account?
+
+        <button id="showSignup">
+          Create Account
+        </button>
+
+      </p>
+
+    </div>
+
+
+    <!-- SIGNUP -->
+
+    <div
+      class="auth-form"
+      id="signupForm"
+    >
+
+      <h2>Create Account</h2>
+
+      <input
+        id="signupName"
+        type="text"
+        placeholder="Full name"
+        maxlength="60"
+      >
+
+      <input
+        id="signupUsername"
+        type="text"
+        placeholder="Username"
+        maxlength="20"
+      >
+
+      <input
+        id="signupEmail"
+        type="email"
+        placeholder="Email address"
+      >
+
+      <input
+        id="signupPassword"
+        type="password"
+        placeholder="Password"
+      >
+
+      <button
+        class="primary-btn"
+        id="signupBtn"
+      >
+        Create Account
+      </button>
+
+      <button
+        class="google-btn"
+        id="googleSignupBtn"
+      >
+        <i class="fa-brands fa-google"></i>
+        Sign up with Google
+      </button>
+
+      <p class="auth-switch">
+
+        Already have an account?
+
+        <button id="showLogin">
+          Log In
+        </button>
+
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================================
+     SIDE MENU
+================================ -->
+
+<div
+  class="menu-overlay"
+  id="overlay"
+></div>
+
+<aside
+  class="side-menu"
+  id="sideMenu"
+>
+
+  <div class="menu-header">
+
+    <div>
+      <h2>PLUTO</h2>
+      <p id="menuUserStatus">
+        Guest mode
+      </p>
+    </div>
+
+    <button
+      class="circle-btn"
+      id="closeMenu"
+      type="button"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+  </div>
+
+
+  <div class="menu-profile">
+
+    <div
+      class="avatar"
+      id="menuAvatar"
+    >
+      <i class="fa-solid fa-user"></i>
+    </div>
+
+    <div>
+      <h3 id="menuUserName">
+        PLUTO Guest
+      </h3>
+
+      <p id="menuUserEmail"></p>
+    </div>
+
+  </div>
+
+
+  <div class="menu-list">
+
+    <button
+      class="menu-item"
+      id="myProfileButton"
+      hidden
+    >
+      <i class="fa-solid fa-user"></i>
+      Profile
+    </button>
+
+    <button
+      class="menu-item"
+      data-page-open="settingsPage"
+      hidden
+    >
+      <i class="fa-solid fa-gear"></i>
+      Settings
+    </button>
+
+    <button
+      class="menu-item logout-item"
+      id="logoutButton"
+      hidden
+    >
+      <i class="fa-solid fa-right-from-bracket"></i>
+      Log Out
+    </button>
+
+    <button
+      class="menu-item"
+      id="guestAuthButton"
+      type="button"
+    >
+      <i class="fa-solid fa-right-to-bracket"></i>
+      Sign In / Create Account
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- ================================
+     HEADER
+================================ -->
+
+<header class="top-header">
+
+  <div class="top-row">
+
+    <div class="logo">
+      PLUTO
+    </div>
+
+    <button
+      class="circle-btn"
+      id="menuButton"
+      type="button"
+    >
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+
+  </div>
+
+
+  <div class="search-box">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Search posts..."
+    >
+
+  </div>
+
+</header>
+
+
+<!-- ================================
+     MAIN
+================================ -->
+
+<main class="main-content">
+
+
+  <!-- FEED -->
+
+  <section
+    class="page active"
+    id="feedPage"
+  >
+
+    <div class="create-post">
+
+      <div class="create-post-top">
+
+        <button
+          class="avatar feed-avatar-button"
+          id="feedAvatar"
+          type="button"
+          aria-label="Open my profile"
+        >
+          <i class="fa-solid fa-user"></i>
+        </button>
+
+        <button
+          class="post-input"
+          id="openCreatePost"
+          type="button"
+        >
+          What's on your mind?
+        </button>
+
+      </div>
+
+
+      <div class="create-post-actions">
+
+        <button
+          type="button"
+          data-media-type="image"
+        >
+          <i class="fa-solid fa-image"></i>
+          Photo
+        </button>
+
+        <button
+          type="button"
+          data-media-type="video"
+        >
+          <i class="fa-solid fa-video"></i>
+          Video
+        </button>
+
+        <button
+          type="button"
+          data-media-type="audio"
+        >
+          <i class="fa-solid fa-microphone"></i>
+          Audio
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <section class="shorts-stories" aria-label="Short videos">
+      <div class="shorts-stories-heading">
+        <h2>Shorts</h2>
+      </div>
+      <div class="shorts-story-list" id="shortStories">
+        <div class="empty-state">Loading Shorts...</div>
+      </div>
+    </section>
+
+
+    <div id="postsContainer">
+
+      <div class="empty-state">
+        Loading feed...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- VIDEOS -->
+
+  <section
+    class="page"
+    id="videoPage"
+  >
+
+  <section class="video-feature-cards" id="videoFeatureCards" aria-label="Video features">
+    <div class="video-short-placeholder" id="videoShortStatus">
+      Finding videos under 30 seconds...
+    </div>
+
+    <div class="hianime-card" id="hianimeCard">
+      <div class="hianime-card-content">
+        <div class="hianime-logo">HiAnime</div>
+        <h2>Watch Anime</h2>
+        <p>Explore anime inside Pluto</p>
+        <button id="openHianimeBtn">Anime Original</button>
+      </div>
+    </div>
+  </section>
+
+
+<!-- HiAnime Viewer -->
+<div id="hianimeViewer" class="hianime-viewer">
+
+  <div class="hianime-viewer-header">
+    <button id="closeHianimeBtn" class="hianime-back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <span>HiAnime</span>
+  </div>
+
+  <iframe
+    id="hianimeFrame"
+    src=""
+    title="HiAnime">
+  </iframe>
+
+</div>
+
+    <div class="video-placeholder">
+
+      <i class="fa-solid fa-circle-play"></i>
+
+      <h2>PLUTO STREAM</h2>
+
+      <p>
+        Videos shared on PLUTO will appear here.
+      </p>
+
+    </div>
+
+    <div id="videoContainer">
+      <div class="empty-state">Open Videos to load posts.</div>
+    </div>
+
+  </section>
+
+  <div class="modal short-viewer-modal" id="shortViewerModal">
+    <div class="short-viewer-shell">
+      <button class="short-viewer-close" data-close="shortViewerModal" type="button" aria-label="Close Shorts">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="short-viewer-feed" id="shortViewerFeed" aria-label="Short videos"></div>
+      <button class="short-viewer-nav short-viewer-up" id="shortViewerUp" type="button" aria-label="Previous Short">
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
+      <button class="short-viewer-nav short-viewer-down" id="shortViewerDown" type="button" aria-label="Next Short">
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="modal home-story-viewer-modal" id="homeStoryViewerModal">
+    <div class="home-story-viewer" id="homeStoryViewer">
+      <button class="home-story-close" data-close="homeStoryViewerModal" type="button" aria-label="Close story">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="home-story-progress" id="homeStoryProgress"></div>
+      <video id="homeStoryVideo" playsinline controls></video>
+      <button class="home-story-nav home-story-prev" id="homeStoryPrev" type="button" aria-label="Previous story">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="home-story-nav home-story-next" id="homeStoryNext" type="button" aria-label="Next story">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <div class="home-story-tap-zones" aria-hidden="true">
+        <span id="homeStoryTapPrev"></span>
+        <span id="homeStoryTapNext"></span>
+      </div>
+      <div class="home-story-creator">
+        <span class="home-story-avatar" id="homeStoryAvatar"></span>
+        <div>
+          <strong id="homeStoryName"></strong>
+          <span id="homeStoryUsername"></span>
+        </div>
+      </div>
+      <p class="home-story-bio" id="homeStoryBio"></p>
+      <p class="home-story-caption" id="homeStoryCaption"></p>
+    </div>
+  </div>
+
+
+  <!-- MESSAGES -->
+
+  <section
+    class="page"
+    id="messagePage"
+  >
+
+    <div class="page-heading">
+
+      <h2>Messages</h2>
+
+      <p>
+        Search people and start a conversation.
+      </p>
+
+    </div>
+
+
+    <div class="search-box">
+
+      <i class="fa-solid fa-user"></i>
+
+      <input
+        id="peopleSearch"
+        type="search"
+        placeholder="Search username..."
+      >
+
+    </div>
+
+
+    <div id="peopleResults"></div>
+
+
+    <h3 class="section-title">
+      Conversations
+    </h3>
+
+    <div id="conversationList"></div>
+
+
+    <div
+      class="chat-window hidden"
+      id="chatWindow"
+    >
+
+      <div class="chat-header">
+
+        <button
+          class="circle-btn"
+          id="closeChat"
+          type="button"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+
+        <div
+          class="chat-user-avatar"
+          id="chatUserAvatar"
+        >
+          <i class="fa-solid fa-user"></i>
+        </div>
+
+
+        <div class="chat-user-info">
+
+          <div class="chat-name-row">
+
+            <h3 id="chatUserName">
+              User
+            </h3>
+
+            <span
+              class="online-dot"
+              id="chatOnlineDot"
+            ></span>
+
+          </div>
+
+          <p id="chatUserStatus">
+            Offline
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="chat-messages"
+        id="chatMessages"
+      ></div>
+
+
+      <div class="chat-input-area">
+
+        <input
+          id="messageInput"
+          type="text"
+          maxlength="2000"
+          placeholder="Type a message..."
+        >
+
+        <button
+          class="send-btn"
+          id="sendMessage"
+          type="button"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- NOTIFICATIONS -->
+
+  <section
+    class="page"
+    id="notificationPage"
+  >
+
+    <div class="page-heading">
+      <h2>Notifications</h2>
+    </div>
+
+    <div id="notificationList"></div>
+
+  </section>
+
+
+  <!-- PROFILE -->
+
+  <section
+    class="page"
+    id="profilePage"
+  >
+
+    <div class="profile-page">
+
+      <div
+        class="profile-cover"
+        id="profileCover"
+      >
+
+        <button
+          class="cover-edit own-profile-control"
+          id="coverEditButton"
+          type="button"
+        >
+          <i class="fa-solid fa-camera"></i>
+        </button>
+
+      </div>
+
+
+      <div class="profile-main">
+
+        <div
+          class="profile-avatar"
+          id="profileAvatar"
+        >
+
+          <i class="fa-solid fa-user"></i>
+
+          <button
+            class="avatar-edit own-profile-control"
+            id="avatarEditButton"
+            type="button"
+          >
+            <i class="fa-solid fa-camera"></i>
+          </button>
+
+        </div>
+
+
+        <div class="profile-info">
+
+          <h1 id="profileName">
+            PLUTO User
+          </h1>
+
+          <p id="profileUsername">
+            @user
+          </p>
+
+          <p id="profileEmail"></p>
+
+        </div>
+
+
+        <div class="profile-buttons">
+
+          <button
+            class="primary-btn own-profile-control"
+            id="editProfileBtn"
+            type="button"
+          >
+            Edit Profile
+          </button>
+
+          <button
+            class="primary-btn own-profile-control"
+            id="profileCreatePost"
+            type="button"
+          >
+            Create Post
+          </button>
+
+          <button
+            class="secondary-btn other-profile-control hidden"
+            id="profileFriendBtn"
+            type="button"
+          >
+            Add Friend
+          </button>
+
+          <button
+            class="primary-btn other-profile-control hidden"
+            id="profileMessageBtn"
+            type="button"
+          >
+            Message
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="profile-bio">
+
+        <p id="profileBio">
+          Welcome to PLUTO 🚀
+        </p>
+
+      </div>
+
+
+      <div class="profile-stats">
+
+        <div>
+          <strong id="profilePostsCount">
+            0
+          </strong>
+
+          <span>Posts</span>
+        </div>
+
+        <div>
+          <strong id="profileFriendsCount">
+            0
+          </strong>
+
+          <span>Friends</span>
+        </div>
+
+      </div>
+
+
+      <div class="profile-tabs">
+
+        <button
+          class="profile-tab active"
+          data-profile-tab="profilePosts"
+          type="button"
+        >
+          Posts
+        </button>
+
+        <button
+          class="profile-tab"
+          data-profile-tab="profileAbout"
+          type="button"
+        >
+          About
+        </button>
+
+        <button
+          class="profile-tab"
+          data-profile-tab="profileFriends"
+          type="button"
+        >
+          Friends
+        </button>
+
+      </div>
+
+
+      <div
+        class="profile-tab-content active"
+        id="profilePosts"
+      >
+        <div id="profilePostsContainer"></div>
+      </div>
+
+
+      <div
+        class="profile-tab-content"
+        id="profileAbout"
+      >
+
+        <div class="info-card">
+
+          <h3>About</h3>
+
+          <p id="aboutName"></p>
+          <p id="aboutUsername"></p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="profile-tab-content"
+        id="profileFriends"
+      >
+        <div id="profileFriendsContainer"></div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SETTINGS -->
+
+  <section
+    class="page"
+    id="settingsPage"
+  >
+
+    <div class="page-heading">
+      <h2>Settings</h2>
+    </div>
+
+    <div class="settings-card">
+
+      <button
+        class="setting-item"
+        id="themeToggle"
+        type="button"
+      >
+
+
+
+        <i class="fa-solid fa-moon"></i>
+
+        <span id="themeText">
+          Dark Mode
+        </span>
+      </button>
+
+      <button
+        class="setting-item"
+        id="resetPasswordSettingBtn"
+        type="button"
+      >
+        <i class="fa-solid fa-key"></i>
+
+        <span>
+          Reset Password
+        </span>
+      </button>
+
+
+  </section>
+
+</div>    
+
+</main>
+
+
+<!-- ================================
+     BOTTOM NAV
+================================ -->
+
+<nav class="bottom-nav">
+
+  <button
+    class="nav-item active"
+    data-page="feedPage"
+    type="button"
+  >
+    <i class="fa-solid fa-house"></i>
+    <span>Feed</span>
+  </button>
+
+  <button
+    class="nav-item"
+    data-page="videoPage"
+    type="button"
+  >
+    <i class="fa-solid fa-circle-play"></i>
+    <span>Videos</span>
+  </button>
+
+  <button
+    class="nav-item"
+    data-page="messagePage"
+    type="button"
+  >
+    <i class="fa-solid fa-message"></i>
+    <span>Message</span>
+  </button>
+
+  <button
+    class="nav-item"
+    data-page="notificationPage"
+    type="button"
+  >
+    <i class="fa-solid fa-bell"></i>
+    <span>Notifications</span>
+  </button>
+
+</nav>
+
+
+<!-- ================================
+     CREATE POST
+================================ -->
+
+<div
+  class="modal"
+  id="postModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2 id="postModalTitle">Create Post</h2>
+
+      <button
+        class="circle-btn"
+        data-close="postModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <p class="post-mode-hint" id="postModeHint"></p>
+
+    <textarea
+      id="postText"
+      maxlength="5000"
+      placeholder="What's on your mind?"
+    ></textarea>
+
+    <input
+      class="form-input"
+      id="postMedia"
+      type="file"
+      accept="image/*,video/*,audio/*"
+    >
+
+    <div
+      class="upload-preview"
+      id="uploadPreview"
+    ></div>
+
+    <div class="short-trim-editor hidden" id="shortTrimEditor">
+      <video id="shortTrimPreview" controls playsinline preload="metadata"></video>
+      <video class="hidden" id="shortTrimResultPreview" controls playsinline preload="metadata"></video>
+      <div class="short-trim-times">
+        <label>
+          Start (seconds)
+          <input id="shortTrimStart" type="number" min="0" step="0.1" value="0">
+        </label>
+        <label>
+          End (seconds)
+          <input id="shortTrimEnd" type="number" min="0.1" step="0.1" value="20">
+        </label>
+      </div>
+      <p id="shortTrimStatus" aria-live="polite">Choose a clip up to 20 seconds.</p>
+      <button class="secondary-btn full-btn" id="trimShortBtn" type="button">
+        Trim Clip
+      </button>
+    </div>
+
+    <button
+      class="primary-btn full-btn"
+      id="publishPost"
+      type="button"
+    >
+      Publish Post
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================================
+     COMMENTS
+================================ -->
+
+<div
+  class="modal"
+  id="commentsModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Comments</h2>
+
+      <button
+        class="circle-btn"
+        data-close="commentsModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <div id="commentsList"></div>
+
+    <div class="comment-input-row">
+
+      <input
+        id="commentInput"
+        type="text"
+        maxlength="1000"
+        placeholder="Write a comment..."
+      >
+
+      <button
+        class="primary-btn"
+        id="sendComment"
+        type="button"
+      >
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================================
+     PROFILE EDIT MENU
+================================ -->
+
+<div
+  class="modal"
+  id="editProfileModal"
+>
+
+  <div class="modal-box profile-edit-menu">
+
+    <div class="modal-header">
+
+      <h2>Edit Profile</h2>
+
+      <button
+        class="circle-btn"
+        data-close="editProfileModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <button
+      class="profile-edit-item"
+      id="openNameEdit"
+      type="button"
+    >
+      <div>
+        <strong>Name</strong>
+        <span id="editMenuName"></span>
+      </div>
+
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+
+    <button
+      class="profile-edit-item"
+      id="openUsernameEdit"
+      type="button"
+    >
+      <div>
+        <strong>Username</strong>
+        <span id="editMenuUsername"></span>
+      </div>
+
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+
+    <button
+      class="profile-edit-item"
+      id="openBioEdit"
+      type="button"
+    >
+      <div>
+        <strong>Bio</strong>
+        <span id="editMenuBio"></span>
+      </div>
+
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+
+    <button
+      class="profile-edit-item"
+      id="openAvatarEdit"
+      type="button"
+    >
+      <div>
+        <strong>Profile Picture</strong>
+        <span>View or change your photo</span>
+      </div>
+
+      <i class="fa-solid fa-camera"></i>
+    </button>
+
+
+    <button
+      class="profile-edit-item"
+      id="openCoverEdit"
+      type="button"
+    >
+      <div>
+        <strong>Cover Picture</strong>
+        <span>View or change your cover</span>
+      </div>
+
+      <i class="fa-solid fa-image"></i>
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- NAME -->
+
+<div
+  class="modal"
+  id="editNameModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Edit Name</h2>
+
+      <button
+        class="circle-btn"
+        data-close="editNameModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <input
+      class="form-input"
+      id="editNameInput"
+      type="text"
+      maxlength="60"
+      placeholder="Your name"
+    >
+
+    <button
+      class="primary-btn full-btn"
+      id="saveNameBtn"
+      type="button"
+    >
+      Save Name
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- USERNAME -->
+
+<div
+  class="modal"
+  id="editUsernameModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Edit Username</h2>
+
+      <button
+        class="circle-btn"
+        data-close="editUsernameModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <input
+      class="form-input"
+      id="editUsernameInput"
+      type="text"
+      maxlength="20"
+      placeholder="Username"
+    >
+
+    <p class="form-help">
+      Letters, numbers and underscore only.
+    </p>
+
+    <button
+      class="primary-btn full-btn"
+      id="saveUsernameBtn"
+      type="button"
+    >
+      Save Username
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- BIO -->
+
+<div
+  class="modal"
+  id="editBioModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Edit Bio</h2>
+
+      <button
+        class="circle-btn"
+        data-close="editBioModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <textarea
+      id="editBioInput"
+      maxlength="150"
+      placeholder="Tell people about yourself..."
+    ></textarea>
+
+    <div class="bio-counter">
+      <span id="bioCharacterCount">0</span>/150
+    </div>
+
+    <button
+      class="primary-btn full-btn"
+      id="saveBioBtn"
+      type="button"
+    >
+      Save Bio
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- AVATAR -->
+
+<div
+  class="modal"
+  id="avatarModal"
+>
+
+  <div class="modal-box media-edit-modal">
+
+    <div class="modal-header">
+
+      <h2>Profile Picture</h2>
+
+      <button
+        class="circle-btn"
+        data-close="avatarModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <div
+      class="media-edit-preview profile-picture-preview"
+      id="avatarPreview"
+    >
+      <i class="fa-solid fa-user"></i>
+    </div>
+
+    <input
+      id="avatarInput"
+      type="file"
+      accept="image/*"
+      hidden
+    >
+
+    <button
+      class="secondary-btn full-btn"
+      id="viewAvatarBtn"
+      type="button"
+    >
+      <i class="fa-solid fa-eye"></i>
+      View Picture
+    </button>
+
+    <button
+      class="primary-btn full-btn"
+      id="chooseAvatarBtn"
+      type="button"
+    >
+      <i class="fa-solid fa-camera"></i>
+      Choose New Picture
+    </button>
+
+    <button
+      class="primary-btn full-btn hidden"
+      id="saveAvatarBtn"
+      type="button"
+    >
+      Save New Picture
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- COVER -->
+
+<div
+  class="modal"
+  id="coverModal"
+>
+
+  <div class="modal-box media-edit-modal">
+
+    <div class="modal-header">
+
+      <h2>Cover Picture</h2>
+
+      <button
+        class="circle-btn"
+        data-close="coverModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <div
+      class="media-edit-preview cover-picture-preview"
+      id="coverPreview"
+    >
+      <i class="fa-solid fa-image"></i>
+    </div>
+
+    <input
+      id="coverInput"
+      type="file"
+      accept="image/*"
+      hidden
+    >
+
+    <button
+      class="secondary-btn full-btn"
+      id="viewCoverBtn"
+      type="button"
+    >
+      <i class="fa-solid fa-eye"></i>
+      View Cover
+    </button>
+
+    <button
+      class="primary-btn full-btn"
+      id="chooseCoverBtn"
+      type="button"
+    >
+      <i class="fa-solid fa-image"></i>
+      Choose New Cover
+    </button>
+
+    <button
+      class="primary-btn full-btn hidden"
+      id="saveCoverBtn"
+      type="button"
+    >
+      Save New Cover
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================================
+     PHOTO VIEWER
+================================ -->
+
+<div
+  class="photo-viewer"
+  id="photoViewer"
+>
+
+  <button
+    class="photo-viewer-close"
+    id="closePhotoViewer"
+    type="button"
+  >
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <img
+    id="photoViewerImage"
+    alt="PLUTO photo"
+  >
+
+</div>
+
+<!-- ================================
+     FORGOT PASSWORD
+================================ -->
+
+<div
+  class="modal"
+  id="forgotPasswordModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Reset Password</h2>
+
+      <button
+        class="circle-btn"
+        data-close="forgotPasswordModal"
+        type="button"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <p class="password-help">
+      Enter your account email.
+      We'll send you a password reset link.
+    </p>
+
+
+    <input
+      class="form-input"
+      id="resetEmail"
+      type="email"
+      placeholder="Email address"
+      autocomplete="email"
+    >
+
+
+    <button
+      class="primary-btn full-btn"
+      id="sendResetBtn"
+      type="button"
+    >
+      Send Reset Link
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================================
+     CREATE NEW PASSWORD
+================================ -->
+
+<div
+  class="modal"
+  id="newPasswordModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Create New Password</h2>
+
+    </div>
+
+
+    <p class="password-help">
+      Enter your new PLUTO password.
+    </p>
+
+
+    <input
+      class="form-input"
+      id="newPassword"
+      type="password"
+      placeholder="New password"
+      minlength="6"
+      autocomplete="new-password"
+    >
+
+
+    <input
+      class="form-input"
+      id="confirmNewPassword"
+      type="password"
+      placeholder="Confirm new password"
+      minlength="6"
+      autocomplete="new-password"
+    >
+
+
+    <button
+      class="primary-btn full-btn"
+      id="saveNewPasswordBtn"
+      type="button"
+    >
+      Save New Password
+    </button>
+
+  </div>
+
+</div>
+
+<script
+  type="module"
+  src="script.js"
+></script>
+
+</body>
+</html>

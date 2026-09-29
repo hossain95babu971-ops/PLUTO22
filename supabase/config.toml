@@ -1,0 +1,4 @@
+project_id = "atlykkkmeupjdoicqfda"
+
+[functions.cleanup-expired-shorts]
+verify_jwt = false

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Pluto</string>
+    <string name="title_activity_main">Pluto</string>
+    <string name="package_name">com.pluto.app</string>
+    <string name="custom_url_scheme">com.pluto.app</string>
+</resources>
