@@ -39,11 +39,14 @@ jobs:
           npx cap copy
           npx cap sync android
 
-      - name: Build Android APK
+      - name: Configure Gradle Memory & Build APK
         run: |
           cd android
+          echo "org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8" >> gradle.properties
           chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --no-daemon
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Xmx2048m"
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
