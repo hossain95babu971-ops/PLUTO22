@@ -27,27 +27,23 @@ jobs:
       - name: Install Dependencies
         run: npm ci || npm install
 
-      - name: Build Web Project
-        run: npm run build --if-present
-
-      - name: Prepare Web Assets Folder
+      - name: Prepare Web Assets
         run: |
           mkdir -p www
           cp -r public/* www/ 2>/dev/null || true
-          cp -r src/* www/ 2>/dev/null || true
           cp index.html www/ 2>/dev/null || true
           cp -r assets www/ 2>/dev/null || true
 
       - name: Sync Capacitor
         run: |
           npx cap copy
-          npx cap sync
+          npx cap sync android
 
       - name: Build Android APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
