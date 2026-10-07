@@ -27,15 +27,27 @@ jobs:
       - name: Install Dependencies
         run: npm ci || npm install
 
-      - name: Install Capacitor CLI
-        run: npm install @capacitor/core @capacitor/cli @capacitor/android
+      - name: Build Web Project (If framework used)
+        run: npm run build --if-present
 
-      - name: Prepare Web Assets
+      - name: Prepare Web Assets Folder
         run: |
           mkdir -p www
+          # Build folder thakle setar file copy korbe
+          if [ -d "dist" ]; then cp -r dist/* www/; fi
+          if [ -d "build" ]; then cp -r build/* www/; fi
+          
+          # Root folder-er shob asset, css, js ebong subfolder copy korbe
           cp -r public/* www/ 2>/dev/null || true
-          cp index.html www/ 2>/dev/null || true
+          cp -r src/* www/ 2>/dev/null || true
           cp -r assets www/ 2>/dev/null || true
+          cp -r css www/ 2>/dev/null || true
+          cp -r js www/ 2>/dev/null || true
+          cp -r components www/ 2>/dev/null || true
+          cp -r styles www/ 2>/dev/null || true
+          cp index.html www/ 2>/dev/null || true
+          cp *.css www/ 2>/dev/null || true
+          cp *.js www/ 2>/dev/null || true
 
       - name: Sync Capacitor
         run: |
